@@ -1,9 +1,9 @@
-Problem Statement - Let’s Bid
-Overview:
+**Problem Statement -** Let’s Bid
+**Overview:**
 In this competition, each participant will program a trading bot that competes against other bots in a multi-round bidding game. The objective is to develop the most effective bidding strategy to maximize profit over several rounds.
 
 
-Gameplay:
+**Gameplay:**
 In each round, every player is given a value x_i (All x_i's are independent of each other i.e. they need not be the same for all players). 
 Each x_i is drawn from a distribution (specified in the next part). 
 Every player will submit a bid. Bids can be fractional as well, but must lie in the range [0, 100].
@@ -17,8 +17,8 @@ iii. The number of players participating in that round of the auction.
 Once a bot runs out of capital, it will no longer be able to participate in the future rounds in the auction.
 If a player makes an illegal bid (bid > capital available, or bid does not lie in [0, min(100, capital available)]), then that player’s bid for the round will automatically be set to 0.
 
-Auction Variants:
-Variant 1 - Clock is Ticking
+**Auction Variants:**
+**Variant 1 -** Clock is Ticking
 i. The value x_i for each player is drawn from a uniform random distribution over the range [0, 100]. All players know that the values are uniformly distributed. 
 
 ii. Every round, a clock will tick from 100 to 0. The bots need to return a time (bid) at which they would like to stop the clock. The first 2 bots to stop the clock (highest bids) win that round of the auction.
@@ -28,7 +28,7 @@ Payoff = X - bid_i; where bid_i is the bid of the ith bot and X is the max value
 
 iv. All other players receive Payoff = 0.
 
-Variant 2 - Confidence is All you need
+**Variant 2 -** Confidence is All you need
 i. The value x_i for each player is drawn from a uniform random distribution over the range [0, 100]. All players know that the values are uniformly distributed. 
 
 ii. All the bots who wish to participate in the round need to submit a bid along with their confidence score. Confidence score signifies the bot’s confidence of winning the auction round and lies between [0.5, 1].
@@ -43,7 +43,7 @@ Payoff = - (c_i * abs(x_i - bid_i))/10; where abs(y) is the absolute value of y
 
 vi. Bots which submitted bid = 0 and confidence = 0 (i.e. did not participate in that round), receive a Payoff = 0.
 
-Variation 3 - Precision Matters
+**Variation 3 -** Precision Matters
 i. The value x_i for each player is drawn from a uniform random distribution over the range [0, 100]. All players know that the values are uniformly distributed.
 
 ii. The payoff for the winner is given by 
@@ -55,5 +55,5 @@ Payoff = - 0.5 * abs((X - bid_i) - (bid_i - s_i)); where abs(y) is the absolute 
 iv. All other players receive Payoff = 0.
 
 
-Objective:
+**Objective:**
 The objective of the game is to maximise the profit over t (~10^3) rounds. Participants must design a strategy for their bot to decide on the optimal bid based on the information available during each round.
