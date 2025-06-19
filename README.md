@@ -1,4 +1,5 @@
-**Problem Statement -** Let’s Bid
+**Problem Statement -** Let’s Bid  
+
 **Overview:**
 In this competition, each participant will program a trading bot that competes against other bots in a multi-round bidding game. The objective is to develop the most effective bidding strategy to maximize profit over several rounds.
 
