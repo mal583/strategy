@@ -56,4 +56,42 @@ iv. All other players receive Payoff = 0.
 
 
 **Objective:**
-The objective of the game is to maximise the profit over t (~10^3) rounds. Participants must design a strategy for their bot to decide on the optimal bid based on the information available during each round.
+The objective of the game is to maximise the profit over t (~10^3) rounds. Participants must design a strategy for their bot to decide on the optimal bid based on the information available during each round.  
+
+**Strategies:**   
+
+**Variant 1:**   
+
+•The threshold value for bid without considering the highest and second highest bids of other contestants for the first 9 rounds is set to 80 considering the mean 
+((100+0)/2 = 50) and standard deviation (√(100 − 0)^2/12 = 28.87) of uniform distribution implying 50+28.87 = 78.87 approximating it to 80 i.e. bidding higher than range containing maximum number of values.    
+
+
+• From the 10th round when the highest and second highest bids of other contestants are considered, 90th percentile of the second-highest bids is taken as threshold as it is high enough and fairly competitive and preventing over-bidding and resulting in losses at the same time.   
+
+• Margin is set to 1 so as to increase the chance of bidding a better value.    
+
+• Bid is considered to be the minimum value amongst threshold + margin, current x_i, capital,100 to ensure that bid doesn’t exceed capital, lies within 100 and also ensuresthat payoff isn’t very less or negative.  
+• Second highest bids are considered primarily to set a comparatively better threshold and a better payoff than considering bid a little higher value than highest bids which might result in over-bidding and hence poor payoff.  
+
+**Variant 2:**  
+
+• From the 10th round when the highest and second highest bids of other contestants are considered, 90th percentile of the second-highest bids is taken as threshold as it ishigh enough and fairly competitive and preventing over-bidding and resulting in losses at the same time.   
+
+• Margin is set to 1 so as to increase the chance of bidding a better value.  
+
+• When x_i is greater than threshold + margin, bid is considered to be the minimum of (threshold + margin,  x_i-5, capital,100) to ensure that the bid is less than the capital, less than 100, and also ensures that payoff isn’t very less or negative. It also ensures that I don’t bid the second highest value as that would result in a negative payoff.   
+
+• Confidence is set as min(1, 0.5 + 0.5 * (x_i - threshold) / (100 - threshold)) in order to have in the in the interval [0.5,1] and when the value of x_i is 100 i.e. maximum value, the confidence becomes 1 implying we can bid on very confidently.    
+
+• Setting 90 percentile over second highest bids and following the above bid algorithm ensures that I don’t end being the second highest bidder resulting in a comparatively safer play.   
+
+• Until 9th round, the threshold is set to a very high value to ensure that it doesn’t result to be a non-winning bid and hence a negative payoff.   
+
+**Variant 3:**  
+• From the 10th round when the highest and second highest bids of other contestants are considered, 90th percentile of the second-highest bids is taken as threshold as it is high enough and fairly competitive and preventing over-bidding and resulting in losses at the same time.   
+
+• Margin is set to 1 so as to increase the chance of bidding a better value.   
+
+• Until 9th round threshold is set to 70 (little less than 80(mean + standard deviation)) in order to not bid the second highest bid.    
+
+• Bid = min(threshold + 1, x_i - 5, capital, 100) only when x_i is greater than threshold else, bid is set to 0. 
